@@ -28,6 +28,8 @@ jobs:
           command: dotnet.exe test -v n --results-directory:test_coverage --collect:"Code Coverage"
       - store_artifacts:
           path: .\test_coverage
+    - store_test_results:
+        path: test_coverage
 
   build:
     executor:
