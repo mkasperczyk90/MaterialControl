@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  win: circleci/windows@1.0.0
+  win: circleci/windows@2.2.0
 
 jobs:
   build:
@@ -19,12 +19,12 @@ jobs:
       - save_cache:
           paths:
             - C:\Users\circleci\.nuget\packages
-          key: dotnet-packages-v1-{{ MaterialTracker.Application/MaterialTracker.csproj" }}
+          key: dotnet-packages-v1-{{ checksum "MaterialTracker.Application/MaterialTracker.Application.csproj" }}
       - run:
           name: "Run Build step"
           command: dotnet.exe publish -c Release -r win10-x64
       - run:
           name: "Test the executable"
-          command: .\bin\Release\netcoreapp3.1\win10-x64\publish\circleci-demo-windows.exe
+          command: .\bin\Release\netcoreapp3.1\win10-x64\publish\MaterialTracker.Application.exe
       - store_artifacts:
-          path: .\bin\Release\netcoreapp3.1\win10-x64\publish\circleci-demo-windows.exe
+          path: .\bin\Release\netcoreapp3.1\win10-x64\publish\MaterialTracker.Application.exe
